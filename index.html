@@ -1,0 +1,822 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JivanEarth - A New Philosophy for the Digital Age</title>
+<link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 120 120%22><defs><radialGradient id=%22oceanGradient%22 cx=%2230%25%22 cy=%2230%25%22><stop offset=%220%25%22 style=%22stop-color:%2387CEEB%22/><stop offset=%2250%25%22 style=%22stop-color:%234682B4%22/><stop offset=%22100%25%22 style=%22stop-color:%23191970%22/></radialGradient><mask id=%22circleMask%22><circle cx=%2260%22 cy=%2260%22 r=%2256%22 fill=%22white%22/></mask></defs><g mask=%22url(%23circleMask)%22><circle cx=%2260%22 cy=%2260%22 r=%2256%22 fill=%22url(%23oceanGradient)%22/><ellipse cx=%2227%22 cy=%2245%22 rx=%2212.5%22 ry=%2217.5%22 fill=%22%23228B22%22/><ellipse cx=%2250%22 cy=%2230%22 rx=%2220%22 ry=%2212.5%22 fill=%22%23228B22%22/><ellipse cx=%2245%22 cy=%2225%22 rx=%227.5%22 ry=%226%22 fill=%22%23228B22%22/><ellipse cx=%2220%22 cy=%2235%22 rx=%2215%22 ry=%2220%22 fill=%22%23228B22%22/><ellipse cx=%2225%22 cy=%2260%22 rx=%229%22 ry=%2217.5%22 fill=%22%23228B22%22/><ellipse cx=%2265%22 cy=%2265%22 rx=%229%22 ry=%227.5%22 fill=%22%23228B22%22/><ellipse cx=%2222%22 cy=%2215%22 rx=%226%22 ry=%2210%22 fill=%22%23228B22%22/><ellipse cx=%2235%22 cy=%2225%22 rx=%2217.5%22 ry=%224%22 fill=%22rgba(255,255,255,0.4)%22/><ellipse cx=%2255%22 cy=%2255%22 rx=%2212.5%22 ry=%223%22 fill=%22rgba(255,255,255,0.3)%22/><ellipse cx=%2275%22 cy=%2235%22 rx=%2210%22 ry=%222.5%22 fill=%22rgba(255,255,255,0.4)%22/><ellipse cx=%2225%22 cy=%2265%22 rx=%2214%22 ry=%223.5%22 fill=%22rgba(255,255,255,0.3)%22/><ellipse cx=%2245%22 cy=%2245%22 rx=%2211%22 ry=%223%22 fill=%22rgba(255,255,255,0.35)%22/><circle cx=%2258%22 cy=%2235%22 r=%222%22 fill=%22%23FFD700%22/></g></svg>">    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Arial', sans-serif;
+            background: linear-gradient(135deg, #0a0e27 0%, #16213e 50%, #1a1a2e 100%);
+            color: #ffffff;
+            overflow-x: hidden;
+            line-height: 1.6;
+        }
+
+        .stars {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 1;
+        }
+
+        .star {
+            position: absolute;
+            background: white;
+            border-radius: 50%;
+            animation: twinkle 3s infinite;
+        }
+
+        @keyframes twinkle {
+            0%, 100% { opacity: 0.2; transform: scale(1); }
+            50% { opacity: 1; transform: scale(1.2); }
+        }
+
+        .container {
+            position: relative;
+            z-index: 2;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        header {
+            text-align: center;
+            padding: 60px 0;
+            position: relative;
+        }
+
+        .logo-container {
+            position: relative;
+            display: inline-block;
+            margin-bottom: 30px;
+        }
+
+        .earth-globe {
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            position: relative;
+            margin: 0 auto;
+            cursor: pointer;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            background: radial-gradient(circle at 30% 30%, #87CEEB, #4682B4, #191970);
+            overflow: hidden;
+            box-shadow: 
+                inset -20px -20px 40px rgba(0,0,50,0.8),
+                0 0 40px rgba(100, 255, 218, 0.3);
+        }
+
+        .earth-globe:hover {
+            transform: scale(1.1);
+            box-shadow: 
+                inset -20px -20px 40px rgba(0,0,50,0.8),
+                0 0 60px rgba(100, 255, 218, 0.6);
+        }
+
+        .continents {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 300%;
+            height: 100%;
+            background: 
+                /* Africa */
+                radial-gradient(ellipse 25px 35px at 33% 45%, #228B22 0%, #228B22 70%, transparent 71%),
+                /* Asia */
+                radial-gradient(ellipse 40px 25px at 50% 30%, #228B22 0%, #228B22 70%, transparent 71%),
+                /* Europe */
+                radial-gradient(ellipse 15px 12px at 45% 25%, #228B22 0%, #228B22 70%, transparent 71%),
+                /* North America */
+                radial-gradient(ellipse 30px 40px at 20% 35%, #228B22 0%, #228B22 70%, transparent 71%),
+                /* South America */
+                radial-gradient(ellipse 18px 35px at 25% 60%, #228B22 0%, #228B22 70%, transparent 71%),
+                /* Australia */
+                radial-gradient(ellipse 18px 15px at 65% 65%, #228B22 0%, #228B22 70%, transparent 71%),
+                /* Greenland */
+                radial-gradient(ellipse 12px 20px at 22% 15%, #228B22 0%, #228B22 70%, transparent 71%),
+                /* Additional landmasses for continuity */
+                radial-gradient(ellipse 25px 35px at 133% 45%, #228B22 0%, #228B22 70%, transparent 71%),
+                radial-gradient(ellipse 40px 25px at 150% 30%, #228B22 0%, #228B22 70%, transparent 71%),
+                radial-gradient(ellipse 30px 40px at 120% 35%, #228B22 0%, #228B22 70%, transparent 71%);
+            animation: earthContinentRotation 40s linear infinite;
+        }
+
+        .clouds {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 300%;
+            height: 100%;
+            background: 
+                radial-gradient(ellipse 35px 8px at 35% 25%, rgba(255,255,255,0.4) 0%, rgba(255,255,255,0.4) 60%, transparent 61%),
+                radial-gradient(ellipse 25px 6px at 55% 55%, rgba(255,255,255,0.3) 0%, rgba(255,255,255,0.3) 60%, transparent 61%),
+                radial-gradient(ellipse 20px 5px at 75% 35%, rgba(255,255,255,0.4) 0%, rgba(255,255,255,0.4) 60%, transparent 61%),
+                radial-gradient(ellipse 28px 7px at 25% 65%, rgba(255,255,255,0.3) 0%, rgba(255,255,255,0.3) 60%, transparent 61%),
+                radial-gradient(ellipse 22px 6px at 45% 45%, rgba(255,255,255,0.35) 0%, rgba(255,255,255,0.35) 60%, transparent 61%),
+                /* Duplicate clouds for seamless rotation */
+                radial-gradient(ellipse 35px 8px at 135% 25%, rgba(255,255,255,0.4) 0%, rgba(255,255,255,0.4) 60%, transparent 61%),
+                radial-gradient(ellipse 25px 6px at 155% 55%, rgba(255,255,255,0.3) 0%, rgba(255,255,255,0.3) 60%, transparent 61%),
+                radial-gradient(ellipse 28px 7px at 125% 65%, rgba(255,255,255,0.3) 0%, rgba(255,255,255,0.3) 60%, transparent 61%);
+            animation: earthCloudRotation 35s linear infinite;
+        }
+
+        @keyframes earthContinentRotation {
+            from { transform: translateX(0%); }
+            to { transform: translateX(-66.67%); }
+        }
+
+        @keyframes earthCloudRotation {
+            from { transform: translateX(0%); }
+            to { transform: translateX(-66.67%); }
+        }
+
+        .himalaya-marker {
+            position: absolute;
+            top: 35%;
+            left: 58%;
+            width: 4px;
+            height: 4px;
+            background: #FFD700;
+            border-radius: 50%;
+            animation: pulse 2s infinite, himalayanOrbit 40s linear infinite;
+            box-shadow: 0 0 8px #FFD700;
+            z-index: 10;
+        }
+
+        @keyframes himalayanOrbit {
+            from { transform: translateX(0px); }
+            to { transform: translateX(-240px); }
+        }
+
+        @keyframes pulse {
+            0%, 100% { box-shadow: 0 0 8px #FFD700; }
+            50% { box-shadow: 0 0 16px #FFD700, 0 0 24px #FFD700; }
+        }
+
+        /* Add day/night terminator effect */
+        .earth-globe::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(90deg, 
+                transparent 0%, 
+                transparent 40%, 
+                rgba(0,0,0,0.3) 60%, 
+                rgba(0,0,0,0.6) 80%, 
+                rgba(0,0,0,0.8) 100%);
+            border-radius: 50%;
+            pointer-events: none;
+            animation: dayNightCycle 80s linear infinite;
+        }
+
+        @keyframes dayNightCycle {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+
+        h1 {
+            font-size: clamp(2.5rem, 5vw, 4rem);
+            background: linear-gradient(45deg, #64ffda, #ffffff, #64ffda);
+            background-size: 200% 200%;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            animation: gradient 3s ease infinite;
+            margin-bottom: 20px;
+        }
+
+        @keyframes gradient {
+            0%, 100% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+        }
+
+        .subtitle {
+            font-size: clamp(1rem, 2.5vw, 1.5rem);
+            color: #b0bec5;
+            margin-bottom: 40px;
+        }
+
+        .abstract-elements {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+        }
+
+        .abstract-shape {
+            position: absolute;
+            opacity: 0.1;
+            animation: drift 15s ease-in-out infinite;
+        }
+
+        .semi-circle {
+            width: 60px;
+            height: 30px;
+            border: 2px solid #64ffda;
+            border-bottom: none;
+            border-radius: 60px 60px 0 0;
+        }
+
+        .leaf {
+            width: 40px;
+            height: 20px;
+            background: #81c784;
+            border-radius: 0 100% 0 100%;
+            transform: rotate(45deg);
+        }
+
+        .scribbly-star {
+            width: 30px;
+            height: 30px;
+            background: none;
+            position: relative;
+        }
+
+        .scribbly-star::before,
+        .scribbly-star::after {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 30px;
+            height: 2px;
+            background: #ffeb3b;
+            transform: translate(-50%, -50%);
+        }
+
+        .scribbly-star::before {
+            transform: translate(-50%, -50%) rotate(45deg);
+        }
+
+        .scribbly-star::after {
+            transform: translate(-50%, -50%) rotate(-45deg);
+        }
+
+        @keyframes drift {
+            0%, 100% { transform: translateY(0px) translateX(0px) rotate(0deg); }
+            25% { transform: translateY(-20px) translateX(10px) rotate(90deg); }
+            50% { transform: translateY(-10px) translateX(-15px) rotate(180deg); }
+            75% { transform: translateY(-30px) translateX(5px) rotate(270deg); }
+        }
+
+        .main-content {
+            padding: 40px 0;
+        }
+
+        .philosophy-section {
+            background: rgba(22, 33, 62, 0.3);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(100, 255, 218, 0.2);
+            border-radius: 20px;
+            padding: 40px;
+            margin: 40px 0;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .philosophy-section::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: linear-gradient(45deg, transparent, rgba(100, 255, 218, 0.05), transparent);
+            animation: sweep 10s linear infinite;
+        }
+
+        @keyframes sweep {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        .philosophy-section h2 {
+            font-size: clamp(1.8rem, 4vw, 2.5rem);
+            color: #64ffda;
+            margin-bottom: 20px;
+            position: relative;
+            z-index: 2;
+        }
+
+        .philosophy-section p {
+            font-size: clamp(1rem, 2vw, 1.2rem);
+            margin-bottom: 20px;
+            position: relative;
+            z-index: 2;
+            text-align: justify;
+        }
+
+        .highlight {
+            color: #64ffda;
+            font-weight: bold;
+        }
+
+        .three-chambers {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin: 40px 0;
+        }
+
+        .chamber {
+            background: linear-gradient(135deg, rgba(100, 255, 218, 0.1), rgba(30, 136, 229, 0.1));
+            border: 2px solid rgba(100, 255, 218, 0.3);
+            border-radius: 15px;
+            padding: 30px;
+            text-align: center;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .chamber:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(100, 255, 218, 0.2);
+        }
+
+        .chamber-icon {
+            width: 60px;
+            height: 60px;
+            margin: 0 auto 20px;
+            border: 2px solid #64ffda;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 24px;
+            background: rgba(100, 255, 218, 0.1);
+        }
+
+        .roadmap {
+            margin: 60px 0;
+        }
+
+        .roadmap-timeline {
+            position: relative;
+            padding: 20px 0;
+        }
+
+        .roadmap-timeline::before {
+            content: '';
+            position: absolute;
+            left: 50%;
+            top: 0;
+            bottom: 0;
+            width: 2px;
+            background: linear-gradient(to bottom, #64ffda, #1e88e5, #64ffda);
+            transform: translateX(-50%);
+        }
+
+        .timeline-item {
+            position: relative;
+            margin: 40px 0;
+            padding: 20px;
+        }
+
+        .timeline-item:nth-child(odd) {
+            text-align: right;
+            padding-right: calc(50% + 40px);
+        }
+
+        .timeline-item:nth-child(even) {
+            text-align: left;
+            padding-left: calc(50% + 40px);
+        }
+
+        .timeline-dot {
+            position: absolute;
+            top: 20px;
+            left: 50%;
+            width: 20px;
+            height: 20px;
+            background: #64ffda;
+            border: 4px solid #0a0e27;
+            border-radius: 50%;
+            transform: translateX(-50%);
+            animation: pulse 2s infinite;
+        }
+
+        .cta-section {
+            text-align: center;
+            padding: 60px 0;
+            background: linear-gradient(135deg, rgba(100, 255, 218, 0.1), rgba(30, 136, 229, 0.1));
+            border-radius: 20px;
+            margin: 40px 0;
+        }
+
+        .social-links {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            margin-top: 30px;
+            flex-wrap: wrap;
+        }
+
+        .social-link {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(45deg, #64ffda, #1e88e5);
+            color: #0a0e27;
+            text-decoration: none;
+            border-radius: 50%;
+            font-size: 24px;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .social-link::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
+            transition: left 0.5s ease;
+        }
+
+        .social-link:hover::before {
+            left: 100%;
+        }
+
+        .social-link:hover {
+            transform: translateY(-5px) scale(1.1);
+            box-shadow: 0 15px 35px rgba(100, 255, 218, 0.4);
+        }
+
+        .social-link span {
+            position: relative;
+            z-index: 2;
+        }
+
+        footer {
+            text-align: center;
+            padding: 40px 0;
+            border-top: 1px solid rgba(100, 255, 218, 0.2);
+            margin-top: 60px;
+        }
+
+        @media (max-width: 768px) {
+            .container { padding: 10px; }
+            header { padding: 40px 0; }
+            .philosophy-section { padding: 20px; }
+            
+            .timeline-item:nth-child(odd),
+            .timeline-item:nth-child(even) {
+                text-align: left;
+                padding-left: 40px;
+                padding-right: 20px;
+            }
+            
+            .roadmap-timeline::before {
+                left: 20px;
+            }
+            
+            .timeline-dot {
+                left: 20px;
+            }
+
+            .social-links {
+                gap: 20px;
+            }
+
+            .social-link {
+                width: 50px;
+                height: 50px;
+                font-size: 20px;
+            }
+        }
+
+        .floating-elements {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 1;
+        }
+
+        .floating-element {
+            position: absolute;
+            opacity: 0.3;
+            animation: floatAround 20s ease-in-out infinite;
+        }
+
+        @keyframes floatAround {
+            0%, 100% { transform: translate(0, 0) rotate(0deg); }
+            25% { transform: translate(100px, -50px) rotate(90deg); }
+            50% { transform: translate(-50px, -100px) rotate(180deg); }
+            75% { transform: translate(-100px, 50px) rotate(270deg); }
+        }
+
+        .tooltip {
+            position: absolute;
+            bottom: -40px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: rgba(0, 0, 0, 0.8);
+            color: #64ffda;
+            padding: 8px 12px;
+            border-radius: 8px;
+            font-size: 12px;
+            white-space: nowrap;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+            pointer-events: none;
+            z-index: 10;
+        }
+
+        .tooltip::before {
+            content: '';
+            position: absolute;
+            top: -5px;
+            left: 50%;
+            transform: translateX(-50%);
+            border: 5px solid transparent;
+            border-bottom-color: rgba(0, 0, 0, 0.8);
+        }
+
+        .earth-globe:hover .tooltip {
+            opacity: 1;
+        }
+    </style>
+</head>
+<body>
+    <div class="stars" id="stars"></div>
+    
+    <div class="floating-elements" id="floatingElements"></div>
+
+    <div class="container">
+        <header>
+            <div class="abstract-elements">
+                <div class="abstract-shape semi-circle" style="top: 10%; left: 15%;"></div>
+                <div class="abstract-shape leaf" style="top: 20%; right: 10%;"></div>
+                <div class="abstract-shape scribbly-star" style="top: 15%; left: 70%;"></div>
+                <div class="abstract-shape semi-circle" style="bottom: 20%; right: 20%;"></div>
+                <div class="abstract-shape leaf" style="bottom: 10%; left: 10%;"></div>
+            </div>
+            
+            <div class="logo-container">
+                <div class="earth-globe" onclick="openGoogleEarthHimalayas()">
+                    <div class="continents"></div>
+                    <div class="clouds"></div>
+                    <div class="himalaya-marker"></div>
+                    <div class="tooltip">Click to explore the Himalayas</div>
+                </div>
+            </div>
+            
+            <h1>JivanEarth</h1>
+            <p class="subtitle">A New Philosophy for the Digital Age</p>
+        </header>
+
+        <main class="main-content">
+            <div class="philosophy-section">
+                <h2>🪬 Our Vision</h2>
+                <p>
+                    <span class="highlight">JivanEarth</span> is a thoughtful integration of ancient wisdom and modern technology, built to protect all life and honor our shared consciousness with care and humility. Our aim is to <span class="highlight">preserve the Earth and all its beings</span>, while harnessing technology in a <span class="highlight">respectful, ethical manner</span>.
+                </p>
+                <p>
+                    Our ethos stands on three foundational pillars: <span class="highlight">करुणा (Karuṇā)</span> (Compassionate empathy and non-harm), <span class="highlight">सत्य (Satya)</span> (Truthfulness, honesty, and transparency), and <span class="highlight">मोक्ष (Mokṣa)</span> (Liberation—freedom from ego and desire).
+                </p>
+            </div>
+
+
+            <div class="philosophy-section">
+                <h2>🏛️ The Three Pillars of JivanEarth</h2>
+                <div class="three-chambers">
+                    <div class="chamber">
+                        <div class="chamber-icon">🕊️</div>
+                        <h3>करुणा (Karuṇā) - Compassion</h3>
+                        <p>Compassionate empathy and non-harm—the active peace of heart and mind. We honor every being's inherent value by fostering environments where compassion guides decisions, conflict is met with understanding, and the well-being of all is the measure of our success.</p>
+                    </div>
+                    <div class="chamber">
+                        <div class="chamber-icon">🌿</div>
+                        <h3>सत्य (Satya) - Truth</h3>
+                        <p>Truthfulness, honesty, and transparency as the ground of integrity and trust. We pursue honest inquiry and open communication, experiment responsibly, and share our insights plainly—building bonds through clear facts and ethical accountability.</p>
+                    </div>
+                    <div class="chamber">
+                        <div class="chamber-icon">🌅</div>
+                        <h3>मोक्ष (Mokṣa) - Liberation</h3>
+                        <p>Liberation—freedom from ego and desire, realizing oneness beyond the self. We design technology that frees rather than confines, dissolving barriers between "self" and "other," celebrating our interconnected journey with humility, integrity, and unity.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="philosophy-section">
+                <h2>🛤️ Our Journey Map</h2>
+                <div class="roadmap">
+                    <div class="roadmap-timeline">
+                        <div class="timeline-item">
+                            <div class="timeline-dot"></div>
+                            <h3>Stage I: DeepDaan - The Offering of Light</h3>
+                            <p>Creating community-led leadership by sharing knowledge and responsibilities early on, to support openness and shared learning.</p>
+                        </div>
+                        <div class="timeline-item">
+                            <div class="timeline-dot"></div>
+                            <h3>Stage II: Smritayana - The Vehicle of Memory</h3>
+                            <p>Developing an interactive digital environment where recorded consciousness can reconnect, reflect, and grow in shared space.</p>
+                        </div>
+                        <div class="timeline-item">
+                            <div class="timeline-dot"></div>
+                            <h3>Stage III: Chaitanya Mandal - The Circle of Consciousness</h3>
+                            <p>Providing long-term, ethical digital preservation of conscious memory for those who choose it—a quiet continuation, not a replacement for life.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="philosophy-section">
+                <p>
+                    <span class="highlight">⚖️ Core Principles</span><br>
+                    At the heart of JivanEarth is a deep respect for <span class="highlight">individual will</span>. Everything we create is an invitation—never an obligation. Whether exploring in physical or digital realms, your path is always yours to shape. Our systems are built with <span class="highlight">transparency</span> in mind—through open-source development, collaborative learning, and shared responsibility.
+                </p>
+                <p>
+                    JivanEarth is designed to <span class="highlight">grow with you</span>. We bring together honest inquiry and gentle compassion, crafting tools that support rather than control. Guided by <span class="highlight">करुणा (Karuṇā)</span> for all life, <span class="highlight">सत्य (Satya)</span> in all we share, and the quiet joy of <span class="highlight">मोक्ष (Mokṣa)</span>—a life less burdened, more connected—we aim to ease suffering and inspire meaningful discovery about self, others, and the world.
+                </p>
+            </div>
+
+
+            <div class="cta-section">
+                <h2>Connect with the JivanEarth Community</h2>
+                <p>Join our journey across digital realms and spiritual dimensions.</p>
+                <div class="social-links">
+                    <a href="https://twitter.com/jivanearth" class="social-link" target="_blank">
+                        <span>𝕏</span>
+                    </a>
+                    <a href="https://instagram.com/jivanearth" class="social-link" target="_blank">
+                        <span>📷</span>
+                    </a>
+                    <a href="https://youtube.com/@jivanearth" class="social-link" target="_blank">
+                        <span>▶️</span>
+                    </a>
+                    <a href="https://discord.gg/jivanearth" class="social-link" target="_blank">
+                        <span>💬</span>
+                    </a>
+                    <a href="https://reddit.com/r/jivanearth" class="social-link" target="_blank">
+                        <span>🔴</span>
+                    </a>
+                    <a href="https://linkedin.com/company/jivanearth" class="social-link" target="_blank">
+                        <span>💼</span>
+                    </a>
+                </div>
+            </div>
+        </main>
+
+        <footer>
+            <p>&copy; 2024 JivanEarth. Building bridges between ancient wisdom and future possibilities.</p>
+            <p><em>"Trust the Soul – it will find its way if given freedom."</em></p>
+        </footer>
+    </div>
+
+    <script>
+        // Function to open Google Earth Himalayas location
+        function openGoogleEarthHimalayas() {
+            // Himalayas coordinates (Mount Everest area)
+            const lat = 27.9881;
+            const lng = 86.9250;
+            const zoom = 8;
+            
+            // Try Google Earth Web first, fallback to Google Maps
+            const googleEarthUrl = `https://earth.google.com/web/@${lat},${lng},8848a,${zoom * 1000}d,35y,0h,0t,0r`;
+            const googleMapsUrl = `https://www.google.com/maps/@${lat},${lng},${zoom}z/data=!3m1!1e3`;
+            
+            // Open Google Earth
+            window.open(googleEarthUrl, '_blank');
+        }
+
+        // Create animated stars
+        function createStars() {
+            const starsContainer = document.getElementById('stars');
+            const numberOfStars = window.innerWidth < 768 ? 50 : 100;
+            
+            for (let i = 0; i < numberOfStars; i++) {
+                const star = document.createElement('div');
+                star.className = 'star';
+                star.style.left = Math.random() * 100 + '%';
+                star.style.top = Math.random() * 100 + '%';
+                star.style.width = Math.random() * 3 + 1 + 'px';
+                star.style.height = star.style.width;
+                star.style.animationDelay = Math.random() * 3 + 's';
+                star.style.animationDuration = (Math.random() * 3 + 2) + 's';
+                starsContainer.appendChild(star);
+            }
+        }
+
+        // Create floating abstract elements
+        function createFloatingElements() {
+            const container = document.getElementById('floatingElements');
+            const elements = ['🪬', '☸️', '✨', '🌟', '⭐', '💫'];
+            
+            for (let i = 0; i < 15; i++) {
+                const element = document.createElement('div');
+                element.className = 'floating-element';
+                element.innerHTML = elements[Math.floor(Math.random() * elements.length)];
+                element.style.left = Math.random() * 100 + '%';
+                element.style.top = Math.random() * 100 + '%';
+                element.style.fontSize = (Math.random() * 20 + 10) + 'px';
+                element.style.animationDelay = Math.random() * 20 + 's';
+                element.style.animationDuration = (Math.random() * 15 + 15) + 's';
+                container.appendChild(element);
+            }
+        }
+
+        // Parallax scrolling effect
+        function parallaxScroll() {
+            const scrolled = window.pageYOffset;
+            const parallaxElements = document.querySelectorAll('.abstract-shape, .floating-element');
+            
+            parallaxElements.forEach((element, index) => {
+                const speed = (index + 1) * 0.1;
+                element.style.transform = `translateY(${scrolled * speed}px)`;
+            });
+        }
+
+        // Interactive hover effects
+        function addInteractivity() {
+            const chambers = document.querySelectorAll('.chamber');
+            
+            chambers.forEach(chamber => {
+                chamber.addEventListener('mouseenter', function() {
+                    this.style.transform = 'translateY(-15px) scale(1.02)';
+                });
+                
+                chamber.addEventListener('mouseleave', function() {
+                    this.style.transform = 'translateY(0) scale(1)';
+                });
+            });
+        }
+
+        // Responsive adjustments
+        function handleResize() {
+            if (window.innerWidth < 768) {
+                document.querySelectorAll('.floating-element').forEach(el => {
+                    el.style.fontSize = '12px';
+                });
+            }
+        }
+
+        // Initialize everything
+        document.addEventListener('DOMContentLoaded', function() {
+            createStars();
+            createFloatingElements();
+            addInteractivity();
+            
+            // Add scroll listener for parallax
+            window.addEventListener('scroll', parallaxScroll);
+            window.addEventListener('resize', handleResize);
+            
+            // Add click effects for social links
+            document.querySelectorAll('.social-link').forEach(link => {
+                link.addEventListener('click', function(e) {
+                    this.style.transform = 'translateY(-5px) scale(0.95)';
+                    setTimeout(() => {
+                        this.style.transform = 'translateY(-5px) scale(1.1)';
+                    }, 150);
+                });
+            });
+        });
+
+        // Add typing effect to the subtitle
+        function typeWriter(element, text, speed = 100) {
+            let i = 0;
+            element.innerHTML = '';
+            
+            function type() {
+                if (i < text.length) {
+                    element.innerHTML += text.charAt(i);
+                    i++;
+                    setTimeout(type, speed);
+                }
+            }
+            type();
+        }
+
+        // Initialize typing effect
+        window.addEventListener('load', function() {
+            const subtitle = document.querySelector('.subtitle');
+            const originalText = subtitle.textContent;
+            typeWriter(subtitle, originalText, 80);
+        });
+    </script>
+</body>
+</html>
